@@ -13,6 +13,7 @@ interface IconInfo {
 
 const TopBar = () => {
   const iconClass = 'h-full w-full';
+  const navClass = 'm-4 flex justify-center';
 
   const iconItems: IconInfo[] = [
     { 
@@ -52,8 +53,7 @@ const TopBar = () => {
         {iconItems.map((item: IconInfo, index: number) => (
           <div key={index} className={twMerge(
             'mx-2 px-2 flex justify-center items-center',
-            'hover hover:bg-[#537692] hover:rounded-lg',
-            'hover:font-medium',
+            'hover hover:bg-[#54473F] hover:rounded-lg hover:font-medium',
             'text-lg'
           )}>
             <a href={`#${item.target}`}>
@@ -69,7 +69,6 @@ const TopBar = () => {
             </a>
           </div>
         ))}
-
       </div>
     );
   };
@@ -77,19 +76,26 @@ const TopBar = () => {
   return (
     <div className={twMerge(
       'h-full w-full flex justify-between',
-      'text-lg tracking-wide',
+      'text-lg',
       'transition-colors duration-300',
-      isScrolled ? 'bg-[#1d3f58]' : 'bg-[#001b2e]'
+      isScrolled ? 'bg-[#AB886D]' : 'bg-[#493628]'
     )}>
       {/* To put same classNames in one variable later */}
-      <div className={twMerge('m-4 flex justify-center')}>
+      <div className={twMerge(navClass)}>
         My Portfolio
       </div>
-      <div className={twMerge('m-4 flex justify-center', 'cursor-pointer')}>
+      <div className={twMerge(navClass, 'cursor-pointer')}>
         {renderMidNav()}
       </div>
-      <div className={twMerge('m-4 flex justify-center', 'cursor-pointer')}>
-        Lets Connect!
+      <div className={twMerge(
+        navClass,
+        'mx-2 px-2',
+        'cursor-pointer',
+        'hover:bg-[#54473F] hover:rounded-lg hover:font-medium'
+      )}>
+        <a href="https://github.com/Air4s" target="_blank" rel="noopener noreferrer">
+          Checkout my github
+        </a>
       </div>
     </div>
   );
