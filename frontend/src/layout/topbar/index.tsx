@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
-import { twMerge } from 'tailwind-merge';
-import { TfiHome } from 'react-icons/tfi';
-import { HiOutlineInformationCircle } from 'react-icons/hi2';
+import { useEffect, useState } from 'react';
 import { BsPeople } from 'react-icons/bs';
+import { HiOutlineInformationCircle } from 'react-icons/hi2';
+import { TfiHome } from 'react-icons/tfi';
+import { useMediaQuery } from 'react-responsive';
+import { twMerge } from 'tailwind-merge';
+import FloatMenu from './float-menu';
 
 
 interface IconInfo {
@@ -14,6 +16,12 @@ interface IconInfo {
 const TopBar = () => {
   const iconClass = 'h-full w-full';
   const navClass = 'm-4 flex justify-center';
+
+  // const isXsView = useMediaQuery({ query: '(max-width: 500px)' })
+  // const isSmView = useMediaQuery({ query: '(max-width: 640px)' })
+  // const isMdView = useMediaQuery({ query: '(max-width: 768px)' })
+  const isLgViewPoint = useMediaQuery({ query: '(max-width: 1024px)' })
+  // const isXlView = useMediaQuery({ query: '(max-width: 1280px)' })
 
   const iconItems: IconInfo[] = [
     { 
@@ -47,55 +55,76 @@ const TopBar = () => {
     };
   }, []);
 
-  const renderMidNav = (): JSX.Element => {
+  const renderLGview = (): JSX.Element => {
     return (
-      <div className='flex'>
-        {iconItems.map((item: IconInfo, index: number) => (
-          <div key={index} className={twMerge(
-            'mx-2 px-2 flex justify-center items-center',
-            'hover hover:bg-[#54473F] hover:rounded-lg hover:font-medium',
-            'text-lg'
-          )}>
-            <a href={`#${item.target}`}>
-              <div className='flex'>
-                <div className='mx-0.5'>
-                  {item.icon}
-                </div>
+      <div className='flex justify-between'>
+        <div className={twMerge(navClass)}>
+          My Portfolio(lg)
+        </div>
+        <div className={twMerge(navClass, 'cursor-pointer')}>
+          <div className='flex'>
+            {iconItems.map((item: IconInfo, index: number) => (
+              <div key={index} className={twMerge(
+                'mx-2 px-2 flex justify-center items-center',
+                'hover hover:bg-[#54473F] hover:rounded-lg hover:font-medium',
+                'text-lg'
+              )}>
+                <a href={`#${item.target}`}>
+                  <div className='flex'>
+                    <div className='mx-0.5'>
+                      {item.icon}
+                    </div>
             
-                <div className='mx-0.5'>
-                  {item.label}
-                </div>
+                    <div className='mx-0.5'>
+                      {item.label}
+                    </div>
+                  </div>
+                </a>
               </div>
-            </a>
+            ))}
           </div>
-        ))}
+        </div>
+        <div className={twMerge(
+          navClass,
+          'mx-2 px-2',
+          'cursor-pointer',
+          'hover:bg-[#54473F] hover:rounded-lg hover:font-medium'
+        )}>
+          <a href="https://github.com/Air4s" target="_blank" rel="noopener noreferrer">
+            Checkout my github
+          </a>
+        </div>
       </div>
     );
   };
 
+  const renderSMview = () : JSX.Element => {
+    return (
+      <div className='flex'>
+        <div className='flex m-4'>
+          <div className='mr-2'>
+            My Portfolio
+          </div>
+          <div className='flex items-center'>
+            <FloatMenu />
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className={twMerge(
-      'h-full w-full flex justify-between',
+      'h-full w-full',
       'text-lg',
       'transition-colors duration-300',
       isScrolled ? 'bg-[#AB886D]' : 'bg-[#493628]'
     )}>
-      {/* To put same classNames in one variable later */}
-      <div className={twMerge(navClass)}>
-        My Portfolio
-      </div>
-      <div className={twMerge(navClass, 'cursor-pointer')}>
-        {renderMidNav()}
-      </div>
-      <div className={twMerge(
-        navClass,
-        'mx-2 px-2',
-        'cursor-pointer',
-        'hover:bg-[#54473F] hover:rounded-lg hover:font-medium'
-      )}>
-        <a href="https://github.com/Air4s" target="_blank" rel="noopener noreferrer">
-          Checkout my github
-        </a>
+      <div className=''>
+        {
+          isLgViewPoint ? renderSMview() : renderLGview()
+        }
+        {}
       </div>
     </div>
   );
