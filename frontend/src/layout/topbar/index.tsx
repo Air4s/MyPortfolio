@@ -7,7 +7,7 @@ import { twMerge } from 'tailwind-merge';
 import FloatMenu from './float-menu';
 
 
-interface IconInfo {
+interface ItopBarMenu {
   icon: React.ReactNode;
   label: string;
   target: string;
@@ -23,7 +23,7 @@ const TopBar = () => {
   const isLgViewPoint = useMediaQuery({ query: '(max-width: 1024px)' })
   // const isXlView = useMediaQuery({ query: '(max-width: 1280px)' })
 
-  const iconItems: IconInfo[] = [
+  const topbarMenu: ItopBarMenu[] = [
     { 
       icon: <TfiHome className={iconClass} />,
       label: 'Home',
@@ -40,6 +40,7 @@ const TopBar = () => {
       target: 'connect'
     },
   ];
+  
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -63,7 +64,7 @@ const TopBar = () => {
         </div>
         <div className={twMerge(navClass, 'cursor-pointer')}>
           <div className='flex'>
-            {iconItems.map((item: IconInfo, index: number) => (
+            {topbarMenu.map((item: ItopBarMenu, index: number) => (
               <div key={index} className={twMerge(
                 'mx-2 px-2 flex justify-center items-center',
                 'hover hover:bg-[#54473F] hover:rounded-lg hover:font-medium',
@@ -100,14 +101,24 @@ const TopBar = () => {
 
   const renderSMview = () : JSX.Element => {
     return (
-      <div className='flex'>
+      <div className='flex justify-between'>
         <div className='flex m-4'>
           <div className='mr-2'>
             My Portfolio
           </div>
           <div className='flex items-center'>
-            <FloatMenu />
+            <FloatMenu menu={topbarMenu} />
           </div>
+        </div>
+        <div className={twMerge(
+          navClass,
+          'mx-2 px-2',
+          'cursor-pointer',
+          'hover:bg-[#54473F] hover:rounded-lg hover:font-medium'
+        )}>
+          <a href="https://github.com/Air4s" target="_blank" rel="noopener noreferrer">
+            Checkout my github
+          </a>
         </div>
       </div>
     )
