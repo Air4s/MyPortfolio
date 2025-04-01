@@ -1,6 +1,6 @@
-// import { Outlet } from 'react-router-dom';
-import TopBar from './topbar';
+import { Outlet } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
+import TopBar from './topbar';
 
 
 const MainLayout = () => {
@@ -13,9 +13,9 @@ const MainLayout = () => {
       <div id='topbar' className='h-16 sticky top-0'>
         <TopBar />
       </div>
-      <main className='items-center justify-center'> {/* overflow-y-scroll */}
-        <div className='bg-[#AB886D] h-full'> {/* h-screen */}
-          Main content here, outlet
+      <main className='items-center justify-center'>
+        <div className='bg-[#AB886D] h-full'>
+          <Outlet />
         </div>
       </main>
     </div>

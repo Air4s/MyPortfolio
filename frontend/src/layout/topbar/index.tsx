@@ -60,7 +60,7 @@ const TopBar = () => {
     return (
       <div className='flex justify-between'>
         <div className={twMerge(navClass)}>
-          My Portfolio(lg)
+          My Portfolio
         </div>
         <div className={twMerge(navClass, 'cursor-pointer')}>
           <div className='flex'>

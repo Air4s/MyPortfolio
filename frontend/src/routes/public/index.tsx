@@ -1,15 +1,16 @@
 import { RouteObject } from 'react-router-dom';
-import MainLayout from '../../layout'
+import MainLayout from '../../layout';
+import HomePage from '../../layout/body';
 
 
 export const PublicRoutes: RouteObject = {
   path: '/',
   element: <MainLayout />,
   children: [
-    // {
-    //   path: '/sample-path',
-    //   element: <AddPageHere />,
-    // },
+    {
+      path: '/',
+      element: <HomePage />,
+    },
     // {
     //   path: '/sample-path',
     //   element: <AddPageHere />,
