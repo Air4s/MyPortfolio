@@ -18,7 +18,7 @@ const HomeProfile = () => {
             <img
               src={profilePic}
               alt='Profile picture'
-              className="w-[160px] h-[180px] rounded-xl shadow-2xl cursor-pointer"
+              className='w-[160px] h-[180px] rounded-xl shadow-2xl cursor-pointer'
             />
           </div>
         </div>
