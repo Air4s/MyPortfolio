@@ -127,6 +127,7 @@ const TopBar = () => {
   return (
     <div className={twMerge(
       'h-full w-full',
+      'sticky top-0 z-50',
       'text-lg',
       'transition-colors duration-300',
       isScrolled ? 'bg-[#AB886D]' : 'bg-[#493628]'

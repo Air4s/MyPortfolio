@@ -9,7 +9,7 @@ import FlipCard from '../../../common/image-flipper/';
 interface IExpGallery {
   src: string;
   alt: string;
-  target: string;
+  description: string;
 }
 
 const HomeExp = () => {
@@ -22,22 +22,22 @@ const HomeExp = () => {
       { 
         src: srDeveloperPic,
         alt: 'Home',
-        target: 'home'
+        description: 'home'
       },
       { 
         src: jrDeveloperPic,
         alt: 'More About Me',
-        target: 'about'
+        description: 'about'
       },
       { 
         src: itServiceDeskPic,
         alt: 'More About Me',
-        target: 'about'
+        description: 'about'
       },
       { 
         src: teacherPic,
         alt: 'More About Me',
-        target: 'about'
+        description: 'about'
       }
     ];
       
@@ -58,17 +58,12 @@ const HomeExp = () => {
               <div key={index} className={twMerge(
                 'bg-[#D6C0B3] flex justify-center rounded-2xl shadow-lg cursor-pointer'
               )}>
-                <img
-                  key={index}
-                  src={item.src}
-                  alt='to change'
-                  className='w-full h-[350px]'
+                <FlipCard
+                  cardClassName='w-full h-[350px] rounded-2xl'
+                  altText={item.alt}
+                  frontImage={item.src}
+                  backDescription={item.description}
                 />
-                {/* <FlipCard
-                  front={<img src={item.src} alt={item.alt} className="w-full h-[350px] z-0" />}
-                  back={<div>Details about this experience</div>}
-                  flipDirection="horizontal"
-                /> */}
               </div>
             ))}
           </div>

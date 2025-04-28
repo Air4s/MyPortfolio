@@ -1,44 +1,81 @@
 import React, { useState } from 'react';
-import ReactCardFlip from 'react-card-flip';
+import { twMerge } from 'tailwind-merge';
 
-interface IImageFlipper {
-  front: React.ReactNode;
-  back: React.ReactNode;
-  flipDirection?: 'horizontal' | 'vertical';
+
+interface IFlipCardProps {
+  frontImage: string;
+  backDescription: string;
+  cardClassName: string;
+  altText: string;
 }
 
-const ImageFlipper: React.FC<IImageFlipper> = ({
-  front,
-  back,
-  flipDirection = 'horizontal',
+const FlipCard: React.FC<IFlipCardProps> = ({
+  frontImage,
+  backDescription,
+  cardClassName,
+  altText
 }) => {
+
+  const card_content_class = 'w-full h-full rounded-xl hover:border-2'
   const [isFlipped, setIsFlipped] = useState(false);
 
   const handleFlip = () => {
-    setIsFlipped(!isFlipped);
+    setIsFlipped((prev) => !prev);
   };
 
   return (
     <div
+      className={twMerge(
+        cardClassName,
+        'cursor-pointer'
+      )}
       onClick={handleFlip}
-      className="cursor-pointer max-w-full overflow-hidden relative z-0" // Prevent overflow and set z-index for layering
-      style={{ marginTop: '60px' }} // Adjust this based on your top bar height (60px is just an example)
     >
-      <ReactCardFlip
-        containerClassName="relative overflow-hidden w-full h-[350px]" // Ensure it doesn't overflow
-        cardZIndex="0" // Set z-index to 0 to prevent overlap with the sticky top bar
-        isFlipped={isFlipped}
-        flipDirection={flipDirection}
+      
+      {/* Front */}
+      <img
+        className={twMerge(
+          card_content_class,
+          isFlipped ? 'hidden' : ''
+        )}
+        src={frontImage}
+        alt={altText}
+      />
+
+      {/* Back */}
+      <div 
+        className={twMerge(
+          card_content_class,
+          isFlipped ? '' : 'hidden'
+        )}
       >
-        <div key="front" className="w-full h-full">
-          {front}
+        <div className='m-6 text-justify bg-red-200'>
+          {backDescription} aray ko!
+          adsadsaddasd dasdsa dasdas dasdas dasdsds
+          adsadsaddasd dasdsa dasdas dasdas dasdsds
+          adsadsaddasd dasdsa dasdas dasdas dasdsds
+          adsadsaddasd dasdsa dasdas dasdas dasdsds
+          adsadsaddasd dasdsa dasdas dasdas dasdsds
+          adsadsaddasd dasdsa dasdas dasdas dasdsds
+          adsadsaddasd dasdsa dasdas dasdas dasdsds
+          adsadsaddasd dasdsa dasdas dasdas dasdsds
+          adsadsaddasd dasdsa dasdas dasdas dasdsds
+          adsadsaddasd dasdsa dasdas dasdas dasdsds
+          adsadsaddasd dasdsa dasdas dasdas dasdsds
+          adsadsaddasd dasdsa dasdas dasdas dasdsds
+          adsadsaddasd dasdsa dasdas dasdas dasdsds
+          adsadsaddasd dasdsa dasdas dasdas dasdsds
+          adsadsaddasd dasdsa dasdas dasdas dasdsds
+          adsadsaddasd dasdsa dasdas dasdas dasdsds
+          adsadsaddasd dasdsa dasdas dasdas dasdsds
+          adsadsaddasd dasdsa dasdas dasdas dasdsds
+          adsadsaddasd dasdsa dasdas dasdas dasdsds
+
         </div>
-        <div key="back" className="w-full h-full">
-          {back}
-        </div>
-      </ReactCardFlip>
-    </div>
+      </div>
+
+    </div> 
   );
 };
 
-export default ImageFlipper;
+export default FlipCard;
